@@ -340,6 +340,7 @@ export class ReceiptService {
     quotationId?: string;
     items: Array<{ productId: string; quantity: number; unitPrice?: number }>;
   }): Receipt {
+    required(input.number, "Número");
     if (this.repo.list().some((item) => item.number === input.number))
       throw new DomainError("Número duplicado");
     const customer = this.customers.get(input.customerId);
